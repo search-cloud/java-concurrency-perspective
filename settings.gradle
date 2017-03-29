@@ -1,0 +1,4 @@
+rootProject.name = 'java-concurrency-perspective'
+
+//
+include 'java-concurrency-perspective-1.0-overview'
