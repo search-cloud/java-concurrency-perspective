@@ -6,7 +6,7 @@ package io.asion.concurrent;
  * @author Asion
  * @since 2017/03/24
  */
-class ThreadDemo extends Thread {
+public class ThreadDemo extends Thread {
     // 持有Thread的一个引用
     private Thread t;
     // 线程名称
@@ -42,16 +42,5 @@ class ThreadDemo extends Thread {
             // 真正调用父类的start()方法，启动线程
             t.start();
         }
-    }
-}
-
-public class TestThread {
-    // 启动两个线程测试
-    public static void main(String args[]) {
-        ThreadDemo t1 = new ThreadDemo("Thread-1");
-        t1.start();
-
-        ThreadDemo t2 = new ThreadDemo("Thread-2");
-        t2.start();
     }
 }

@@ -1,31 +1,12 @@
 package io.asion.concurrent;
 
-import org.junit.Test;
-
-/**
- * @author Asion.
- * @since 2017/4/5.
- */
-public class TestYield {
-    // 启动两个线程测试
-    @Test
-    public void testYield() {
-        YieldDemo r1 = new YieldDemo("Thread-1");
-        r1.start();
-
-        YieldDemo r2 = new YieldDemo("Thread-2");
-        r2.start();
-    }
-}
-
-
 /**
  * 实现Runnable接口的方式，创建线程
  *
  * @author Asion
  * @since 2017/03/24
  */
-class YieldDemo implements Runnable {
+class PriorityDemo implements Runnable {
     // 持有Thread的一个引用
     private Thread t;
     // 线程名称
@@ -36,7 +17,7 @@ class YieldDemo implements Runnable {
      *
      * @param name 线程名称
      */
-    YieldDemo(String name) {
+    PriorityDemo(String name) {
         threadName = name;
         System.out.println("Creating " + threadName);
     }
@@ -48,13 +29,13 @@ class YieldDemo implements Runnable {
     @Override
     public void run() {
         System.out.println("Running " + threadName);
-        for (int i = 10; i > 0; i--) {
-            System.out.println("Thread: " + threadName + ", " + i);
-            // 只要碰到10的倍数就让给其他线程执行
-            if (i % 2 == 0) {
-                Thread.yield();
-                System.out.println("Thread: " + threadName + ", yield");
+        try {
+            for (int i = 100; i > 0; i--) {
+                System.out.println("Thread: " + threadName + ", " + i);
+                Thread.sleep(50);
             }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         System.out.println("Thread " + threadName + " exiting.");
     }
@@ -73,9 +54,7 @@ class YieldDemo implements Runnable {
 
     void start(Thread t) {
         this.t = t;
-        t.start();
+        this.t.start();
     }
 
 }
-
-

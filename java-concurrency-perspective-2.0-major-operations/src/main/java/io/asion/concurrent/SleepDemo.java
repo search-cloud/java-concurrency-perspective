@@ -1,14 +1,12 @@
 package io.asion.concurrent;
 
-import org.junit.Test;
-
 /**
  * 实现Runnable接口的方式，创建线程
  *
  * @author Asion
  * @since 2017/03/24
  */
-class RunnableDemo implements Runnable {
+class SleepDemo implements Runnable {
     // 持有Thread的一个引用
     private Thread t;
     // 线程名称
@@ -19,7 +17,7 @@ class RunnableDemo implements Runnable {
      *
      * @param name 线程名称
      */
-    RunnableDemo(String name) {
+    SleepDemo(String name) {
         threadName = name;
         System.out.println("Creating " + threadName);
     }
@@ -52,17 +50,5 @@ class RunnableDemo implements Runnable {
             // 真正调用线程类的start()方法，启动线程
             t.start();
         }
-    }
-}
-
-public class TestRunnableSleep {
-    // 启动两个线程测试
-    @Test
-    public void testRunnableSleep() {
-        RunnableDemo r1 = new RunnableDemo("Thread-1");
-        r1.start();
-
-        RunnableDemo r2 = new RunnableDemo("Thread-2");
-        r2.start();
     }
 }
